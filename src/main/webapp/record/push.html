@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推送</title>
+</head>
+<body>
+    <h1 align="center">推送数据填写</h1>
+    <form action="chooseWay" method="post">
+        <input type="hidden" name="robotId" value=#(robotId)>
+        <input type="hidden" name="pushWay" value=#(pushWay)>
+        <table align="center">
+        #if(pushWay == "text")
+            <tr>
+                <td><input type="text" name="content" placeholder="请输入消息内容"/></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="atMobiles" placeholder="被@人的手机号,格式为@155XXXX4123"/></td>
+            </tr>
+            <tr>
+                <td>是否@所有人
+                    <input type="radio" name="isAtAll" value="true">是
+                    <input type="radio" name="isAtAll" value="false">否
+                </td>
+            </tr>
+        #else if (pushWay == "link")
+            <tr>
+                <td><input type="text" name="title" placeholder="消息标题"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="text" placeholder="消息内容,如果太长只会部分展示"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="messageUrl" placeholder="点击消息跳转的URL"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="picUrl" placeholder="图片URL"></td>
+            </tr>
+        #else if (pushWay == "markdown")
+            <tr>
+                <td><input type="text" name="title" placeholder="消息标题"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="text" placeholder="markdown格式的消息"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="atMobiles" placeholder="被@人的手机号,格式为@155XXXX4123"/></td>
+            </tr>
+
+            <tr>
+                <td>是否@所有人
+                    <input type="radio" name="isAtAll" value="true">是
+                    <input type="radio" name="isAtAll" value="false">否
+                </td>
+            </tr>
+        #else if (pushWay.contains("ActionCard"))
+            <tr>
+                <td><input type="text" name="title" placeholder="消息标题"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="text" placeholder="markdown格式的消息"></td>
+            </tr>
+            #if (pushWay == "overallActionCard")
+            <tr>
+                <td><input type="text" name="singleTitle" placeholder="单个按钮的方案"></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="singleURL" placeholder="点击title触发的URL"></td>
+            </tr>
+            #else if (pushWay == "independentActionCard")
+            <tr>
+                <td><input type="text" name="btns" placeholder="按钮的信息"/></td>
+            </tr>
+            #end
+            <tr>
+                <td>按钮排列方式
+                    <input type="radio" name="btnOrientation" value="0">按钮竖直排列
+                    <input type="radio" name="btnOrientation" value="1">按钮横向排列
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td>是否隐藏发消息者头像
+                    <input type="radio" name="hideAvatar" value="1">是
+                    <input type="radio" name="hideAvatar" value="0">否
+                </td>
+            </tr>
+
+        #else if (pushWay == "feedCard")
+            <tr>
+                <!--<td><input type="text" name="links" placeholder="信息"></td>-->
+                <td><textarea name="links" placeholder="信息" rows="15" cols="50"></textarea> </td>
+            </tr>
+        #end
+            <tr>
+                <td><input type="submit" value="推送数据"></td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>

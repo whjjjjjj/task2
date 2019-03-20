@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推送方式</title>
+
+</head>
+<body>
+    <h1 align="center">选择推送方式</h1>
+    <form action="/record/pushWay" method="post">
+        <input type="hidden" name="robotId" value=#(robotId)>
+        <table align="center">
+            <tr>
+                <td>
+                    <label><input type="radio" name="pushWay" value="text" >text</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label><input type="radio" name="pushWay" value="link">link</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label><input type="radio" name="pushWay" value="markdown">markdown</label></td>
+            </tr>
+
+            <tr>
+                <td><label><input type="radio" name="pushWay" value="independentActionCard">独立跳转</label></td>
+            </tr>
+
+            <tr>
+                <td><label><input type="radio" name="pushWay" value="overallActionCard">整体跳转</label></td>
+            </tr>
+
+            <tr>
+                <td><label><input type="radio" name="pushWay" value="feedCard">feedCard</label></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="提交"/></td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>

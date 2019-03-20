@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    </head>
+
+    <script>
+        function change1()
+        {
+
+            var name=document.getElementsByName('name')[0];
+            var pw=document.getElementsByName("pw")[0];
+            name.disabled="disabled";
+            pw.disabled="disabled";
+
+
+        }
+
+        function change2()
+        {
+
+            var name=document.getElementsByName('name')[0];
+            var pw=document.getElementsByName("pw")[0];
+            name.disabled="";
+            pw.disabled="";
+
+
+        }
+
+    </script>
+
+<body>
+<form method="post" action="">
+    <table>
+        <tr><td><input type="radio" name="id" onclick="change1()"></td><td>id1</td></tr>
+        <tr><td><input type="radio" name="id" onclick="change1()"></td><td>id2</td></tr>
+        <tr><td><input type="radio" name="id" checked onclick="change2()"></td><td>other</td></tr>
+    </table>
+    <table id="change">
+        <tr><td><input type="text" name="name"></td></tr>
+        <tr><td><input type="text" name="pw"></td></tr>
+    </table>
+    <input type="submit" value="submit" onclick="change()">
+</form>
+</body>
+</html>

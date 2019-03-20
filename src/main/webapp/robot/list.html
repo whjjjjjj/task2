@@ -6,12 +6,11 @@
 </head>
 <body>
 尊敬的管理员:
-    #for(admin:admins)
-        #(admin.admin_password)
-    #end
-    <h1 align="">机器人展示</h1>
-    <a href="/robot/add.html">增加机器人</a>
-
+    <h1 align="center">机器人展示</h1>
+<h2>
+    <a href="/robot/add.html" >增加机器人</a>
+    <a href="/record/list">查看所有机器人发送记录</a>
+</h2>
     <table align="center">
 
         <tr>
@@ -23,7 +22,7 @@
         #for(robot:robots)
         <tr>
 
-            <td>#(robot.id)</td>
+            <td>#(robot.robot_id)</td>
             <td>#(robot.robot_name)</td>
             <td>#(robot.robot_url)</td>
             <td>

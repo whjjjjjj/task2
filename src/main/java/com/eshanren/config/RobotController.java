@@ -1,23 +1,29 @@
-package com.eshanren.controller;
+package com.eshanren.config;
 
 import com.eshanren.model.Admin;
 import com.eshanren.model.Robot;
-import com.eshanren.service.RobotService;
+import com.eshanren.service.IRobotService;
+import com.eshanren.service.impl.RobotServiceImpl;
 import com.jfinal.core.Controller;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2019/3/18.
+ *
+ * @author whj
  */
 public class RobotController extends Controller {
-    RobotService robotService = new RobotService();
+
+    IRobotService robotService = new RobotServiceImpl();
     public void index(){
         list();
     }
     public void list(){
         List<Robot> robots = robotService.findAll();
         System.out.println(robots);
+        Admin admin = getSessionAttr("admins");
+        System.out.println(admin);
         setAttr("robots",robots);
         renderTemplate("list.html");
     }

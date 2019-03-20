@@ -5,9 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eshanren.dto.RespRet;
 import com.eshanren.model.Robot;
 import com.eshanren.service.IDingDingService;
-import com.eshanren.service.RobotService;
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
+import com.eshanren.service.IRobotService;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpPost;
@@ -17,10 +15,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author WWF
@@ -41,7 +36,7 @@ import java.util.Map;
 public class DingDingServiceImpl implements IDingDingService {
 
     RespRet respRet;
-    private RobotService robotService = new RobotService();
+    private IRobotService robotService = new RobotServiceImpl();
     @Override
     public RespRet getAllRobots() {
 //        Iterator<String> it = prop.getProperties().stringPropertyNames().iterator();
@@ -71,9 +66,7 @@ public class DingDingServiceImpl implements IDingDingService {
     public RespRet getRobotById(int id) {
         respRet = new RespRet();
         Robot robot = robotService.findById(id);
-        System.out.println(robot);
         String robotUrl = robot.getStr("robot_url");
-        System.out.println(robotUrl);
         respRet.setMessage(robotUrl);
         return respRet;
     }
@@ -120,7 +113,8 @@ public class DingDingServiceImpl implements IDingDingService {
                 System.out.println(result);
                 respRet.setSuccess(true);
                 respRet.setError("null");
-                respRet.setData(result);
+                respRet.setData(textMsg);
+                respRet.setMessage(result);
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -144,14 +138,8 @@ public class DingDingServiceImpl implements IDingDingService {
         jsonObject.put("at",jsonObject2);
 
         String textMsg = jsonObject.toJSONString();
-        System.out.println(textMsg);
 
         return this.common(webhookToken,textMsg);
-
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 
 
@@ -169,13 +157,7 @@ public class DingDingServiceImpl implements IDingDingService {
         jsonObject.put("link",jsonObject1);
 
         String textMsg = jsonObject.toJSONString();
-        System.out.println(textMsg);
         return this.common(webhookToken,textMsg);
-
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 
     @Override
@@ -195,15 +177,8 @@ public class DingDingServiceImpl implements IDingDingService {
         jsonObject.put("at",jsonObject2);
 
         String textMsg = jsonObject.toJSONString();
-        System.out.println(textMsg);
 
         return this.common(webhookToken,textMsg);
-
-
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 
     @Override
@@ -225,11 +200,6 @@ public class DingDingServiceImpl implements IDingDingService {
         System.out.println(textMsg);
 
         return this.common(webhookToken,textMsg);
-
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 
     @Override
@@ -247,14 +217,8 @@ public class DingDingServiceImpl implements IDingDingService {
         jsonObject.put("msgtype","actionCard");
 
         String textMsg = jsonObject.toJSONString();
-        System.out.println(textMsg);
-
+        System.out.println(btns);
         return this.common(webhookToken,textMsg);
-
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 
     @Override
@@ -268,13 +232,8 @@ public class DingDingServiceImpl implements IDingDingService {
         jsonObject.put("msgtype","feedCard");
 
         String textMsg = jsonObject.toJSONString();
-        System.out.println(textMsg);
 
         return this.common(webhookToken,textMsg);
 
-//        respRet = new RespRet();
-//        respRet.setMessage(textMsg);
-//        respRet.setSuccess(true);
-//        return respRet;
     }
 }

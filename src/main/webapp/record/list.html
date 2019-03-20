@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送记录</title>
+</head>
+<body>
+        <h1 align="center">发送记录表</h1>
+        <table align="center">
+            <tr>
+                <td>发送数据记录</td>
+                <td>发送数据时间</td>
+                <td>机器人id</td>
+            </tr>
+            #for(record:recordPages.getList())
+                <tr>
+                    <td>#(record.record_data)</td>
+                    <td>#(record.record_time)</td>
+                    <td>#(record.robot_id)</td>
+                </tr>
+            #end
+            <tr>
+                <td>当前页:#(recordPages.getPageNumber())</td>
+
+                <td colspan="2">
+                    #if(recordPages.getPageNumber()>1)
+                        <a href=/record/list?pageNum=#(recordPages.getPageNumber()-1)>上一页</a>
+                    #end
+
+                    #for(i=0;i< recordPages.getTotalPage(); i++)
+                        <a href=/record/list?pageNum=#(i+1)>#(i+1)</a>
+                    #end
+
+                    #if(recordPages.getPageNumber()<recordPages.getTotalPage())
+                        <a href=/record/list?pageNum=#(recordPages.getPageNumber()+1)>下一页</a>
+                    #end
+
+                    总记录数:#(recordPages.getTotalRow())
+                    <a href=/robot/list>返回总览</a>
+                </td>
+            </tr>
+        </table>
+
+</body>
+</html>

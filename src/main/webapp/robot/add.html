@@ -6,11 +6,18 @@
 </head>
 <body>
     <form action="add" method="post">
-        <input type="text" name="robotName" placeholder="输入机器人名字">
-        <br><br>
-        <input type="text" name="robotUrl" placeholder="输入机器人webhook">
-        <br><br>
-        <button type="submit" >添加机器人</button>
+        <table align="center">
+            <tr>
+                <td><input type="text" name="robotName" placeholder="输入机器人名字"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="robotUrl" placeholder="输入机器人webhook"></td>
+            </tr>
+            <tr>
+                <td><button type="submit" >添加机器人</button></td>
+                <td><a href=/robot/list>返回总览</a></td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>

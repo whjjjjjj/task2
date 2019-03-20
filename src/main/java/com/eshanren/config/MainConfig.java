@@ -1,8 +1,5 @@
 package com.eshanren.config;
 
-import com.eshanren.controller.AdminController;
-import com.eshanren.controller.RecordController;
-import com.eshanren.controller.RobotController;
 import com.eshanren.model.Admin;
 import com.eshanren.model.Record;
 import com.eshanren.model.Robot;
@@ -11,12 +8,21 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
+import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 
 /**
  * Created by Administrator on 2019/3/18.
+ *
+ * @author whj
  */
 public class MainConfig extends JFinalConfig {
+
+    public static void main(String[] args){
+        UndertowServer.start(MainConfig.class,80,true);
+
+    }
+
     @Override
     public void configConstant(Constants constants) {
         constants.setDevMode(true);

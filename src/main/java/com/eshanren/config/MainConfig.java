@@ -1,10 +1,11 @@
 package com.eshanren.config;
 
-import com.eshanren.engine.format;
+import com.eshanren.engine.DateFormat;
 import com.eshanren.model.Admin;
 import com.eshanren.model.Record;
 import com.eshanren.model.Robot;
 import com.jfinal.config.*;
+import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -40,7 +41,7 @@ public class MainConfig extends JFinalConfig {
 
     @Override
     public void configEngine(Engine engine) {
-        engine.addDirective("format",new format());
+        engine.addDirective("format",DateFormat.class);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class MainConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors interceptors) {
-
+        interceptors.add(new SessionInViewInterceptor());
     }
 
     @Override

@@ -13,12 +13,6 @@ import java.util.List;
 public interface IDingDingService {
 
 
-    /**
-     * 获取所有钉钉机器人信息
-     *
-     * @return
-     */
-    public RespRet getAllRobots();
 
 
     /**
@@ -28,17 +22,6 @@ public interface IDingDingService {
      * @return
      */
     public RespRet getRobotById(int id);
-
-    /**
-     * 通过 群名进行模糊检索
-     *
-     * @param name
-     * @return
-     */
-    public RespRet searchRobotsByGroupName(String name);
-
-    // TODO: 2019-03-14 异常信息，在业务实现层进行处理，返回错误信息即可，不要抛出给调用方
-
 
     /**
      * 推送 text 消息，支持at 动作

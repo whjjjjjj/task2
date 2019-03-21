@@ -10,8 +10,10 @@ import java.util.Date;
 
 /**
  * Created by Administrator on 2019/3/20.
+ *
+ * @author whj
  */
-public class format extends Directive {
+public class DateFormat extends Directive {
 
 
     @Override

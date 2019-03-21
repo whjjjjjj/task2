@@ -1,8 +1,12 @@
 package com.eshanren.config;
 
 import com.eshanren.model.Admin;
+import com.eshanren.service.IAdminService;
+import com.eshanren.service.impl.AdminServiceImpl;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,36 +16,42 @@ import java.util.List;
  */
 public class AdminController extends Controller {
 
+    private IAdminService adminService = new AdminServiceImpl();
+
     public void index(){
         renderTemplate("login.html");
     }
 
     public void login(){
-        String name = getPara("adminName");
+        String adminName = getPara("adminName");
         String password = getPara("adminPassword");
-        String sql = "SELECT * FROM admin WHERE admin_name = ? AND admin_password = ?";
-        Admin admins = new Admin().dao().findFirst(sql,name,password);
-        System.out.println(admins);
-
-        if(admins!=null){
+        List<Admin> userList = new ArrayList<Admin>();
+        boolean b = adminService.findUserLogin(adminName,password,userList);
+        if (b) {
+            String sql = "update admin set admin_logintime=? where admin_name = ?";
+            Db.update(sql,System.currentTimeMillis(),adminName);
+            setAttr("status",0);
             System.out.println("登录成功");
-            setSessionAttr("admins",admins);
+            setAttr("admin",userList.get(0));
+            setSessionAttr("admin",userList.get(0));
             redirect("/robot/list");
+
         }else{
             System.out.println("登录失败");
+            setAttr("message","账号或密码错误");
             renderTemplate("message.html");
         }
     }
 
-    public void regist(){
+    public void register(){
         String adminName = getPara("admin_name");
         String adminPassword = getPara("admin_password");
-        boolean b = new Admin().set("admin_name",adminName).set("admin_password",adminPassword).save();
+        boolean b = adminService.register(adminName,adminPassword);
         if (b){
             setAttr("message","注册成功");
         } else {
             setAttr("message","注册失败");
         }
-        renderTemplate("login.html");
+        renderTemplate("message.html");
     }
 }

@@ -20,12 +20,16 @@ public class RobotController extends Controller {
         list();
     }
     public void list(){
-        List<Robot> robots = robotService.findAll();
-        System.out.println(robots);
-        Admin admin = getSessionAttr("admins");
-        System.out.println(admin);
-        setAttr("robots",robots);
-        renderTemplate("list.html");
+
+        //session实现
+        if (getSessionAttr("admin")!=null) {
+            List<Robot> robots = robotService.findAll();
+            setAttr("robots", robots);
+            renderTemplate("list.html");
+        } else {
+            setAttr("message","请先登录再操作");
+            renderTemplate("/admin/message.html");
+        }
     }
 
     public void add(){

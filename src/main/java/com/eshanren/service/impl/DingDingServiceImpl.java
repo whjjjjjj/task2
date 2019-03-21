@@ -37,30 +37,7 @@ public class DingDingServiceImpl implements IDingDingService {
 
     RespRet respRet;
     private IRobotService robotService = new RobotServiceImpl();
-    @Override
-    public RespRet getAllRobots() {
-//        Iterator<String> it = prop.getProperties().stringPropertyNames().iterator();
-//        Map<String,String> data = new HashMap<String,String>(20);
-//        while(it.hasNext()){
-//            String key = it.next();
-//            data.put(key,prop.get(key));
-//        }
-//        Boolean b = "".equals(data.toString());
-//        if (b){
-//            respRet =  RespRet.fail();
-//        } else {
-//            respRet = new RespRet();
-//            respRet.setData(data);
-//            respRet.setSuccess(true);
-//            respRet.setError("null");
-//
-//        }
-////        //以properties为一张表的情况下建立
-////        respRet = new RespRet();
-////        respRet.setData(this.cache());
-//        System.out.println(respRet.getData());
-        return respRet;
-    }
+
 
     @Override
     public RespRet getRobotById(int id) {
@@ -70,29 +47,6 @@ public class DingDingServiceImpl implements IDingDingService {
         respRet.setMessage(robotUrl);
         return respRet;
     }
-
-    @Override
-    public RespRet searchRobotsByGroupName(String name) {
-//
-//
-//        Map<String,String> data = (Map<String,String>)this.getAllRobots().getData();
-//        for(String s : data.keySet()){
-//            if(s.contains("name")&&data.get(s).contains(name)) {
-//                respRet = new RespRet();
-//                respRet.setMessage(data.get(s));
-//                System.out.println(data.get(s));
-//            }
-//        }
-//
-//        if(respRet.getMessage()==null){
-//            System.out.println("我失败了");
-//            respRet = RespRet.fail();
-//        }
-
-        return respRet;
-
-    }
-
 
     private RespRet common(String webhookToken,String textMsg)  {
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();

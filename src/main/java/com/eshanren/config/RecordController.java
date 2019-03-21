@@ -160,14 +160,7 @@ public class RecordController extends Controller{
         } else {
              pageNum = Integer.parseInt(num);
         }
-        List<Record> records = recordService.findAll();
         Page<Record> recordPages = recordService.paginate(pageNum,2);
-        recordPages.getPageSize();
-        System.out.println(recordPages.getList());
-        recordPages.getPageNumber();//当前页
-        recordPages.getTotalPage(); //总页数
-        recordPages.getTotalRow(); //总记录数
-        System.out.println(recordPages);
         setAttr("recordPages",recordPages);
         setAttr("totalPage",recordPages.getTotalPage());
         renderTemplate("list.html");

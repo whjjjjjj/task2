@@ -1,5 +1,6 @@
 package com.eshanren.config;
 
+import com.eshanren.engine.format;
 import com.eshanren.model.Admin;
 import com.eshanren.model.Record;
 import com.eshanren.model.Robot;
@@ -39,7 +40,7 @@ public class MainConfig extends JFinalConfig {
 
     @Override
     public void configEngine(Engine engine) {
-
+        engine.addDirective("format",new format());
     }
 
     @Override

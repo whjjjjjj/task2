@@ -6,6 +6,7 @@ import com.eshanren.service.impl.AdminServiceImpl;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class AdminController extends Controller {
             setAttr("status",0);
             System.out.println("登录成功");
             setAttr("admin",userList.get(0));
-            setSessionAttr("admin",userList.get(0));
+//            setSessionAttr("admin",userList.get(0));
+            setCookie("adminName",adminName,600);
             redirect("/robot/list");
+
 
         }else{
             System.out.println("登录失败");

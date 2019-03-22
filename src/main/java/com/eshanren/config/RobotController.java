@@ -22,7 +22,8 @@ public class RobotController extends Controller {
     public void list(){
 
         //session实现
-        if (getSessionAttr("admin")!=null) {
+//        if (getSessionAttr("admin")!=null) {
+        if (getCookie("adminName") != null) {
             List<Robot> robots = robotService.findAll();
             setAttr("robots", robots);
             renderTemplate("list.html");

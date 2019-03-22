@@ -62,6 +62,8 @@ public class RecordController extends Controller{
         String isAtAll = getPara("isAtAll");
         String content = getPara("content");
         String atMobiles = getPara("atMobiles");
+
+        System.out.println(content);
         if ("".equals(content)) {
             setAttr("message","发送失败,内容不能为空");
         } else {

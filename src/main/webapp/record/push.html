@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>推送</title>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>
 </head>
 <body>
     <h1 align="center">推送数据填写</h1>
-    <form action="chooseWay" method="post">
+    <form name="form1" action="chooseWay" method="post">
         <input type="hidden" name="robotId" value=#(robotId)>
         <input type="hidden" name="pushWay" value=#(pushWay)>
         <table align="center">
         #if(pushWay == "text")
             <tr>
-                <td><textarea name="content" placeholder="请输入消息内容,不可为空"  rows="3" cols="15"></textarea></td>
+                <!-- 实例化编辑器 -->
+                <script type="text/javascript">
+                    var ue = UE.getEditor('container');
+                </script>
+
+                <td><textarea name="content" id="container"  placeholder="请输入消息内容,不可为空"  rows="3" cols="15" ></textarea></td>
             </tr>
             <tr>
                 <td><input type="text" name="atMobiles" placeholder="被@人的手机号,格式为@155XXXX4123"/></td>

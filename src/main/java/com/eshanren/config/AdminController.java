@@ -22,6 +22,7 @@ public class AdminController extends Controller {
     public void index(){
         renderTemplate("login.html");
     }
+    // TODO: 2019-03-24 sql 禁止出现在controller 层
 
     public void login(){
         String adminName = getPara("adminName");

@@ -13,6 +13,9 @@ import java.util.List;
 public class AdminServiceImpl implements IAdminService{
 
     private Admin dao = new Admin().dao();
+
+    // TODO: 2019-03-24 sql 不要硬编码
+    // TODO: 2019-03-24 业务层返回值应用Ret
     @Override
     public boolean findUserLogin(String adminName, String password, List<Admin> userList) {
         String sql = "SELECT * FROM admin WHERE admin_name = ? AND admin_password = ?";

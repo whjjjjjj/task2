@@ -21,6 +21,9 @@ import java.util.List;
  * @author whj
  */
 public class RecordController extends Controller{
+    // TODO: 2019-03-24 缺少登录状态拦截
+    // TODO: 2019-03-24 代码太乱，并且没有注释
+    // TODO: 2019-03-24 参数合法性的校验太简单，可以使用jfinal 的 validator
 
     private IDingDingService dingDingService = new DingDingServiceImpl();
     private IRecordService recordService = new RecordServiceImpl();

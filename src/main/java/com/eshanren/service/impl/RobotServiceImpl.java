@@ -17,19 +17,22 @@ public class RobotServiceImpl implements IRobotService {
 
     @Override
     public List<Robot> findAll() {
-        String sql = "select * from robot";
+//        String sql = "select * from robot";
+        String sql = Db.getSql("robot.findAll");
         return dao.find(sql);
     }
 
     @Override
     public Robot findById(int id) {
-        String sql = "SELECT * FROM robot WHERE robot_id = ?";
+//        String sql = "SELECT * FROM robot WHERE robot_id = ?";
+        String sql = Db.getSql("robot.findById");
         return dao.findFirst(sql,id);
     }
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE FROM robot WHERE robot_id = ?";
+//        String sql = "DELETE FROM robot WHERE robot_id = ?";
+        String sql = Db.getSql("robot.deleteById");
         Db.update(sql,id);
     }
 

@@ -22,7 +22,7 @@
                     var ue = UE.getEditor('container');
                 </script>
 
-                <td><textarea name="content" id="container"  placeholder="请输入消息内容,不可为空"  rows="3" cols="15" ></textarea></td>
+                <td><textarea name="content" id="container"  placeholder="请输入消息内容,不可为空"  rows="3" cols="15" ></textarea>#(contentMsg)</td>
             </tr>
             <tr>
                 <td><input type="text" name="atMobiles" placeholder="被@人的手机号,格式为@155XXXX4123"/></td>
@@ -35,15 +35,15 @@
             </tr>
         #else if (pushWay == "link")
             <tr>
-                <td><input type="text" name="title" placeholder="消息标题,不可为空"></td>
+                <td><input type="text" name="title" placeholder="消息标题,不可为空">#(titleMsg)</td>
             </tr>
 
             <tr>
-                <td><textarea name="text" placeholder="消息内容,如果太长只会部分展示,不可为空" rows="3" cols="15"></textarea></td>
+                <td><textarea name="text" placeholder="消息内容,如果太长只会部分展示,不可为空" rows="3" cols="15"></textarea>#(textMsg)</td>
             </tr>
 
             <tr>
-                <td><input type="text" name="messageUrl" placeholder="点击消息跳转的URL,,不可为空" ></td>
+                <td><input type="text" name="messageUrl" placeholder="点击消息跳转的URL,,不可为空" >#(messageUrlMsg)</td>
             </tr>
 
             <tr>
@@ -51,11 +51,11 @@
             </tr>
         #else if (pushWay == "markdown")
             <tr>
-                <td><input type="text" name="title" placeholder="消息标题,不可为空"></td>
+                <td><input type="text" name="title" placeholder="消息标题,不可为空">#(titleMsg)</td>
             </tr>
 
             <tr>
-                <td><textarea name="text" placeholder="markdown格式的消息,不可为空" rows="3" cols="15"></textarea></td>
+                <td><textarea name="text" placeholder="markdown格式的消息,不可为空" rows="3" cols="15"></textarea>#(textMsg)</td>
             </tr>
 
             <tr>
@@ -70,23 +70,23 @@
             </tr>
         #else if (pushWay.contains("ActionCard"))
             <tr>
-                <td><input type="text" name="title" placeholder="消息标题,不可为空"></td>
+                <td><input type="text" name="title" placeholder="消息标题,不可为空">#(titleMsg)</td>
             </tr>
 
             <tr>
-                <td><textarea name="text" placeholder="markdown格式的消息,不可为空" rows="3" cols="15"></textarea></td>
+                <td><textarea name="text" placeholder="markdown格式的消息,不可为空" rows="3" cols="15"></textarea>#(textMsg)</td>
             </tr>
             #if (pushWay == "overallActionCard")
             <tr>
-                <td><input type="text" name="singleTitle" placeholder="单个按钮的方案,不可为空"></td>
+                <td><input type="text" name="singleTitle" placeholder="单个按钮的方案,不可为空">#(singleTitleMsg)</td>
             </tr>
 
             <tr>
-                <td><input type="text" name="singleURL" placeholder="点击title触发的URL,不可为空"></td>
+                <td><input type="text" name="singleURL" placeholder="点击title触发的URL,不可为空">#(singleURLMsg)</td>
             </tr>
             #else if (pushWay == "independentActionCard")
             <tr>
-                <td><textarea name="btns" placeholder="按钮的信息,不可为空" rows="5" cols="25"></textarea></td>
+                <td><textarea name="btns" placeholder="按钮的信息,不可为空" rows="5" cols="25"></textarea>#(btnsMsg)</td>
             </tr>
             #end
             <tr>
@@ -108,7 +108,7 @@
         #else if (pushWay == "feedCard")
             <tr>
                 <!--<td><input type="text" name="links" placeholder="信息"></td>-->
-                <td><textarea name="links" placeholder="信息,不可为空" rows="15" cols="50"></textarea> </td>
+                <td><textarea name="links" placeholder="信息,不可为空" rows="15" cols="50"></textarea>#(linksMsg) </td>
             </tr>
         #end
             <tr>

@@ -20,17 +20,9 @@ public class RobotController extends Controller {
         list();
     }
     public void list(){
-
-        //session实现
-//        if (getSessionAttr("admin")!=null) {
-        if (getCookie("adminName") != null) {
-            List<Robot> robots = robotService.findAll();
-            setAttr("robots", robots);
-            renderTemplate("list.html");
-        } else {
-            setAttr("message","请先登录再操作");
-            renderTemplate("/admin/message.html");
-        }
+         List<Robot> robots = robotService.findAll();
+         setAttr("robots", robots);
+         renderTemplate("list.html");
     }
 
     public void add(){
@@ -39,7 +31,8 @@ public class RobotController extends Controller {
 
         boolean b = robotService.addRobot(robotName,robotUrl);
         if(b){
-            list();
+            setAttr("message","成功");
+            renderTemplate("message.html");
         }else{
             setAttr("message","失败");
             renderTemplate("message.html");

@@ -18,19 +18,22 @@ public class RecordServiceImpl implements IRecordService{
 
     @Override
     public List<Record> findAll() {
-        String sql = "SELECT * FROM record";
+//        String sql = "SELECT * FROM record";
+        String sql = Db.getSql("record.findAll");
         return dao.find(sql);
     }
 
     @Override
     public Record findById(int id) {
-        String sql = "SELECT * FROM record WHERE record_id = ?";
+//        String sql = "SELECT * FROM record WHERE record_id = ?";
+        String sql = Db.getSql("record.findById");
         return dao.findFirst(sql,id);
     }
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE FROM record WHERE record_id = ?";
+//        String sql = "DELETE FROM record WHERE record_id = ?";
+        String sql = Db.getSql("record.deleteById");
         Db.update(sql,id);
     }
 

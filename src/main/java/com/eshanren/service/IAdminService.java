@@ -1,5 +1,6 @@
 package com.eshanren.service;
 
+import com.eshanren.dto.RespRet;
 import com.eshanren.model.Admin;
 
 import java.util.List;
@@ -16,10 +17,9 @@ public interface IAdminService {
      *
      * @param adminName
      * @param password
-     * @param userList
      * @return
      */
-    public boolean findUserLogin(String adminName, String password, List<Admin> userList);
+    public RespRet findUserLogin(String adminName, String password);
 
     /**
      * 注册
@@ -28,7 +28,20 @@ public interface IAdminService {
      * @param password
      * @return
      */
-    public boolean register(String adminName,String password);
+    public RespRet register(String adminName,String password);
 
+    /**
+     * 更新最后一次登录的时间
+     *
+     * @param loginTime
+     * @param name
+     */
+    public void updateLoginTime(long loginTime , String name);
 
+    /**
+     * 根据id找管理员
+     *
+     * @param id
+     */
+    public Admin findById(int id);
 }

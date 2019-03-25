@@ -13,18 +13,24 @@ import java.util.Date;
  *
  * @author whj
  */
-public class DateFormat extends Directive {
+public class DateFormatDirective extends Directive {
 
-    // TODO: 2019-03-24 类名不太规范 
-    // TODO: 2019-03-24 代码逻辑不严谨，可以看下jfinal 中的源码 
+    // 2019-03-24 类名不太规范
+    //  2019-03-24 代码逻辑不严谨，可以看下jfinal 中的源码
 
     @Override
     public void exec(Env env, Scope scope, Writer writer) {
-        Object[] ret = this.exprList.evalExprList(scope);
-        long l = (long)ret[0];
-        Date date = new Date(l);
+
+        //获取参数
+        Object rett = this.exprList.eval(scope);
+
+        //定义日期格式化规则
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
+            //转换日期类型
+            Date date = new Date((long)rett);
+
+            //输出格式化之后的结果
             write(writer,sdf.format(date));
         } catch (Exception e) {
             e.printStackTrace();

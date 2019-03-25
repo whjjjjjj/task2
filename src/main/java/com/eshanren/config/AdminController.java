@@ -1,8 +1,13 @@
 package com.eshanren.config;
 
+import com.eshanren.dto.RespRet;
+import com.eshanren.interceptor.LoginInterceptor;
 import com.eshanren.model.Admin;
 import com.eshanren.service.IAdminService;
 import com.eshanren.service.impl.AdminServiceImpl;
+import com.eshanren.validator.LoginValidator;
+import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 
@@ -22,35 +27,35 @@ public class AdminController extends Controller {
     public void index(){
         renderTemplate("login.html");
     }
-    // TODO: 2019-03-24 sql 禁止出现在controller 层
 
+    @Before(LoginValidator.class)
+    @Clear(LoginInterceptor.class)
     public void login(){
         String adminName = getPara("adminName");
         String password = getPara("adminPassword");
-        List<Admin> userList = new ArrayList<Admin>();
-        boolean b = adminService.findUserLogin(adminName,password,userList);
+        RespRet respRet = adminService.findUserLogin(adminName,password);
+        boolean b = respRet.isSuccess();
+        Admin admin = (Admin)respRet.getData();
         if (b) {
-            String sql = "update admin set admin_logintime=? where admin_name = ?";
-            Db.update(sql,System.currentTimeMillis(),adminName);
-            setAttr("status",0);
+            adminService.updateLoginTime(System.currentTimeMillis(),adminName);
             System.out.println("登录成功");
-            setAttr("admin",userList.get(0));
-//            setSessionAttr("admin",userList.get(0));
-            setCookie("adminName",adminName,600);
-            redirect("/robot/list");
-
-
+            setCookie("adminId",admin.getStr("admin_id"),-1);
+//            setSessionAttr("admin",admin);
+//            setCookie("adminName",adminName,600);
+//            redirect("/robot/list");
+            setAttr("adminName",adminName);
+            render("/index.html");
         }else{
             System.out.println("登录失败");
             setAttr("message","账号或密码错误");
             renderTemplate("message.html");
         }
     }
-
+    @Clear
     public void register(){
         String adminName = getPara("admin_name");
         String adminPassword = getPara("admin_password");
-        boolean b = adminService.register(adminName,adminPassword);
+        boolean b = adminService.register(adminName,adminPassword).isSuccess();
         if (b){
             setAttr("message","注册成功");
         } else {

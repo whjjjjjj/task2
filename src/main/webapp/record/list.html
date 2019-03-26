@@ -6,6 +6,10 @@
 </head>
 <body>
         <h1 align="center">发送记录表</h1>
+
+        #if(recordPages.getTotalRow()==0)
+            当前无发送记录
+        #else
         <table align="center">
             <tr>
                 <td>发送数据记录</td>
@@ -39,6 +43,6 @@
                 </td>
             </tr>
         </table>
-
+        #end
 </body>
 </html>

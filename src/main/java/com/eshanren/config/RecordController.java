@@ -12,6 +12,7 @@ import com.eshanren.validator.HeadersValidator;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
+import com.overzealous.remark.Remark;
 
 
 import java.util.Arrays;
@@ -23,7 +24,7 @@ import java.util.List;
  * @author whj
  */
 public class RecordController extends Controller{
-    // TODO: 2019-03-24 缺少登录状态拦截
+    // 2019-03-24 缺少登录状态拦截
     // 2019-03-24 代码太乱，并且没有注释
     // 2019-03-24 参数合法性的校验太简单，可以使用jfinal 的 validator
 
@@ -37,7 +38,9 @@ public class RecordController extends Controller{
         renderTemplate("pushWay.html");
     }
 
-    //获取选择的推送方式
+    /**
+     * 获取推送的方式
+     */
     public void pushWay(){
         String pushWay = getPara("pushWay");
         if (pushWay==null){
@@ -51,7 +54,9 @@ public class RecordController extends Controller{
         }
     }
 
-    //选择的推送方式对应的前端数据的读取
+    /**
+     * 选择的推送方式对应的前端数据的读取
+     */
     @Before(HeadersValidator.class)
     public void chooseWay(){
         String pushWay = getPara("pushWay");
@@ -66,7 +71,11 @@ public class RecordController extends Controller{
         }
     }
 
-    //存储发送记录
+    /**
+     * 存储发送记录
+     * @param respRet
+     * @param robotId
+     */
     private void common(RespRet respRet,String robotId){
         if (respRet.isSuccess()) {
             recordService.addRecord((String) respRet.getData(),  System.currentTimeMillis(), Integer.parseInt(robotId));
@@ -104,10 +113,12 @@ public class RecordController extends Controller{
     public void pushMarkdownMsg(){
         String robotId = getPara("robotId");
         String title = getPara("title");
-        String text = getPara("text");
+        String text1 = getPara("text");
         String atMobiles = getPara("atMobiles");
         String isAtAll = getPara("isAtAll");
 
+        Remark remark = new Remark();
+        String text =remark.convertFragment(text1);
         boolean b = "true".equals(isAtAll);
         RespRet respRet = dingDingService.pushMarkdownMsg(robotId, title, text, Arrays.asList(atMobiles), b);
         this.common(respRet,robotId);
@@ -118,11 +129,13 @@ public class RecordController extends Controller{
     public void pushIndependentActionCardMsg() {
         String robotId = getPara("robotId");
         String title = getPara("title");
-        String text = getPara("text");
+        String text1 = getPara("text");
         String btns = getPara("btns");
         String btnOrientation = getPara("btnOrientation");
         String hideAvatar = getPara("hideAvatar");
 
+        Remark remark = new Remark();
+        String text =remark.convertFragment(text1);
         JSONArray jsonArray = JSONObject.parseArray(btns);
         System.out.println(jsonArray);
         RespRet respRet = dingDingService.pushActionCardMsg(robotId, title, text, jsonArray, btnOrientation, hideAvatar);
@@ -134,12 +147,14 @@ public class RecordController extends Controller{
     public void pushOverallActionCardMsg() {
         String robotId = getPara("robotId");
         String title = getPara("title");
-        String text = getPara("text");
+        String text1 = getPara("text");
         String singleTitle = getPara("singleTitle");
         String singleURL = getPara("singleURL");
         String btnOrientation = getPara("btnOrientation");
         String hideAvatar = getPara("hideAvatar");
 
+        Remark remark = new Remark();
+        String text =remark.convertFragment(text1);
         RespRet respRet = dingDingService.pushActionCardMsg(robotId, title, text, singleTitle, singleURL, btnOrientation, hideAvatar);
         this.common(respRet,robotId);
 
@@ -156,7 +171,9 @@ public class RecordController extends Controller{
         renderTemplate("message.html");
     }
 
-    //分页显示所有机器人发送的所有数据
+    /**
+     * 分页显示所有机器人发送的所有数据
+     */
     public void list(){
         String num = getPara("pageNum");
         int pageNum;
@@ -165,9 +182,10 @@ public class RecordController extends Controller{
         } else {
              pageNum = Integer.parseInt(num);
         }
-        Page<Record> recordPages = recordService.paginate(pageNum,2);
+        Page<Record> recordPages = (Page<Record>)recordService.paginate(pageNum,2).getData();
         setAttr("recordPages",recordPages);
         setAttr("totalPage",recordPages.getTotalPage());
+
         renderTemplate("list.html");
     }
 

@@ -18,6 +18,8 @@ public class AdminServiceImpl implements IAdminService{
     private RespRet respRet ;
     //  2019-03-24 sql 不要硬编码
     //  2019-03-24 业务层返回值应用Ret
+
+
     @Override
     public RespRet findUserLogin(String adminName, String password) {
         String sql = Db.getSql("admin.login");
@@ -49,10 +51,19 @@ public class AdminServiceImpl implements IAdminService{
     }
 
     @Override
-    public Admin findById(int id) {
+    public RespRet findById(int id) {
         String sql = Db.getSql("admin.findById");
-        return dao.findFirst(sql,id);
+        respRet = new RespRet();
+        respRet.setData(dao.findFirst(sql,id));
 
+        return respRet;
+
+    }
+
+    @Override
+    public void updateAdminPassword(int id, String password) {
+        String sql = Db.getSql("admin.updateAdminPassword");
+        Db.update(sql,password,id);
     }
 
 

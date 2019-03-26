@@ -42,7 +42,7 @@ public class DingDingServiceImpl implements IDingDingService {
     @Override
     public RespRet getRobotById(int id) {
         respRet = new RespRet();
-        Robot robot = robotService.findById(id);
+        Robot robot = (Robot)robotService.findById(id).getData();
         String robotUrl = robot.getStr("robot_url");
         respRet.setMessage(robotUrl);
         return respRet;

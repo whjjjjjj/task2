@@ -63,4 +63,18 @@ public class AdminController extends Controller {
         }
         renderTemplate("message.html");
     }
+
+    public void updateAdminPassword(){
+        String password = getPara("newpass");
+        String id = getCookie("adminId");
+        adminService.updateAdminPassword(Integer.parseInt(id),password);
+        setAttr("message","修改成功,请重新登录");
+        renderTemplate("message.html");
+    }
+
+    public void logout(){
+        removeCookie("adminId");
+        renderTemplate("/admin/login.html");
+    }
+
 }

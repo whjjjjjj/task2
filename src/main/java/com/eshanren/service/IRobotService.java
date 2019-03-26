@@ -1,5 +1,6 @@
 package com.eshanren.service;
 
+import com.eshanren.dto.RespRet;
 import com.eshanren.model.Robot;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface IRobotService {
      *
      * @return
      */
-    public List<Robot> findAll();
+    public RespRet findAll();
 
     /**
      * 根据id查到某个机器人信息
@@ -24,7 +25,7 @@ public interface IRobotService {
      * @param id
      * @return
      */
-    public Robot findById(int id);
+    public RespRet findById(int id);
 
     /**
      * 删除此id机器人信息
@@ -40,7 +41,7 @@ public interface IRobotService {
      * @param robotUrl
      * @return
      */
-    public boolean addRobot(String robotName , String robotUrl);
+    public RespRet addRobot(String robotName , String robotUrl);
 
     /**
      * 编辑更改机器人信息
@@ -50,5 +51,5 @@ public interface IRobotService {
      * @param robotUrl
      * @return
      */
-    public Robot editRobot(int robotId,String robotName,String robotUrl);
+    public RespRet editRobot(int robotId,String robotName,String robotUrl);
 }

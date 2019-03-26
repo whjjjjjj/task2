@@ -1,5 +1,6 @@
 package com.eshanren.service.impl;
 
+import com.eshanren.dto.RespRet;
 import com.eshanren.model.Robot;
 import com.eshanren.service.IRobotService;
 import com.jfinal.plugin.activerecord.Db;
@@ -14,19 +15,24 @@ import java.util.List;
 public class RobotServiceImpl implements IRobotService {
 
     private Robot dao = new Robot().dao();
+    RespRet respRet;
 
     @Override
-    public List<Robot> findAll() {
+    public RespRet findAll() {
 //        String sql = "select * from robot";
         String sql = Db.getSql("robot.findAll");
-        return dao.find(sql);
+        respRet = new RespRet();
+        respRet.setData(dao.find(sql));
+        return respRet;
     }
 
     @Override
-    public Robot findById(int id) {
+    public RespRet findById(int id) {
 //        String sql = "SELECT * FROM robot WHERE robot_id = ?";
         String sql = Db.getSql("robot.findById");
-        return dao.findFirst(sql,id);
+        respRet = new RespRet();
+        respRet.setData(dao.findFirst(sql,id));
+        return respRet;
     }
 
     @Override
@@ -37,13 +43,14 @@ public class RobotServiceImpl implements IRobotService {
     }
 
     @Override
-    public boolean addRobot(String robotName, String robotUrl) {
-        boolean b =new Robot().set("robot_name",robotName).set("robot_url",robotUrl).save();
-        return b;
+    public RespRet addRobot(String robotName, String robotUrl) {
+        respRet = new RespRet();
+        respRet.setSuccess(new Robot().set("robot_name",robotName).set("robot_url",robotUrl).save());
+        return respRet;
     }
 
     @Override
-    public Robot editRobot(int robotId, String robotName, String robotUrl) {
+    public RespRet editRobot(int robotId, String robotName, String robotUrl) {
         boolean b = new Robot().findById(robotId).set("robot_name",robotName).set("robot_url",robotUrl).update();
         if (b){
             return findById(robotId);

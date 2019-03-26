@@ -42,6 +42,15 @@ public interface IAdminService {
      * 根据id找管理员
      *
      * @param id
+     * @return
      */
-    public Admin findById(int id);
+    public RespRet findById(int id);
+
+    /**
+     * 修改密码
+     *
+     * @param id
+     * @param password
+     */
+    public void updateAdminPassword(int id,String password);
 }

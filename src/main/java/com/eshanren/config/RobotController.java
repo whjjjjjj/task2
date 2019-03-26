@@ -20,7 +20,7 @@ public class RobotController extends Controller {
         list();
     }
     public void list(){
-         List<Robot> robots = robotService.findAll();
+         List<Robot> robots = (List<Robot>)robotService.findAll().getData();
          setAttr("robots", robots);
          renderTemplate("list.html");
     }
@@ -29,7 +29,7 @@ public class RobotController extends Controller {
         String robotName = getPara("robotName");
         String robotUrl = getPara("robotUrl");
 
-        boolean b = robotService.addRobot(robotName,robotUrl);
+        boolean b = robotService.addRobot(robotName,robotUrl).isSuccess();
         if(b){
             setAttr("message","成功");
             renderTemplate("message.html");
@@ -50,7 +50,7 @@ public class RobotController extends Controller {
         String robotId = getPara("robotId");
         String robotName = getPara("robotName");
         String robotUrl = getPara("robotUrl");
-        Robot robot =robotService.editRobot(Integer.parseInt(robotId),robotName,robotUrl);
+        Robot robot = (Robot)robotService.editRobot(Integer.parseInt(robotId),robotName,robotUrl).getData();
         if (robot!=null){
             list();
         } else {
@@ -60,7 +60,7 @@ public class RobotController extends Controller {
 
     public void editRobot(){
         String robotId = getPara("robotId");
-        Robot robot = robotService.findById(Integer.parseInt(robotId));
+        Robot robot = (Robot)robotService.findById(Integer.parseInt(robotId)).getData();
         setAttr("robot",robot);
         renderTemplate("editRobot.html");
     }
@@ -72,7 +72,7 @@ public class RobotController extends Controller {
         String robotName = getPara("robotName");
         String robotUrl = getPara("robotUrl");
 
-        Robot robot = robotService.editRobot(Integer.parseInt(robotId1),robotName,robotUrl);
+        Robot robot = (Robot)robotService.editRobot(Integer.parseInt(robotId1),robotName,robotUrl).getData();
         if (robot==null){
             setAttr("message","修改失败");
         } else {

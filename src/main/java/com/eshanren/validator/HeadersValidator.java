@@ -20,10 +20,11 @@ public class HeadersValidator extends Validator{
             case "markdown" : validateRequiredString("title","titleMsg","不可为空");
                 validateRequiredString("text","textMsg","不可为空");
                 break;
-            case "overallActionCard" : validateRequiredString("title","titleMsg","不可为空");
+            case "overallActionCard" :
+                validateRequiredString("title","titleMsg","不可为空");
                 validateRequiredString("text","textMsg","不可为空");
-                validateRequiredString("singleUrl","singleUrlMsg","不可为空");
                 validateRequiredString("singleTitle","singleTitleMsg","不可为空");
+                validateRequiredString("singleUrl","singleUrlMsg","不可为空");
                 break;
             case "independentActionCard" : validateRequiredString("title","titleMsg","不可为空");
                 validateRequiredString("text","textMsg","不可为空");

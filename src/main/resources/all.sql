@@ -10,6 +10,10 @@
   #sql("findById")
     SELECT * FROM admin WHERE admin_id = ?
   #end
+
+  #sql("updateAdminPassword")
+    UPDATE admin SET admin_password = ? WHERE admin_id = ?
+  #end
 #end
 
 #namespace("record")

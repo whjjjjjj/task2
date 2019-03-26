@@ -5,6 +5,8 @@ import com.jfinal.validate.Validator;
 
 /**
  * Created by Administrator on 2019/3/25.
+ *
+ * @author whj
  */
 public class LoginValidator extends Validator {
     @Override

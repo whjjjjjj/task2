@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 
 /**
  * Created by Administrator on 2019/3/25.
+ *
+ * @author whj
  */
 public class Generator {
 

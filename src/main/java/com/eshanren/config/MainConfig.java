@@ -22,7 +22,7 @@ import com.jfinal.template.source.ClassPathSourceFactory;
 public class MainConfig extends JFinalConfig {
 
     //  2019-03-24 数据库建库sql 也要上传
-    // TODO: 2019-03-24 界面实在太难看了，任务中要求有后台模版 
+    //  2019-03-24 界面实在太难看了，任务中要求有后台模版
 
     public static void main(String[] args){
         UndertowServer.start(MainConfig.class,80,true);
@@ -55,7 +55,6 @@ public class MainConfig extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
         arp.setShowSql(true);
         //设置了sql文件存放的基础路径
-//        arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
         arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
         arp.addSqlTemplate("all.sql");
 

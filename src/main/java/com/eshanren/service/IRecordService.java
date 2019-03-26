@@ -1,5 +1,6 @@
 package com.eshanren.service;
 
+import com.eshanren.dto.RespRet;
 import com.eshanren.model.Record;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -17,7 +18,7 @@ public interface IRecordService {
      *
      * @return
      */
-    public List<Record> findAll();
+    public RespRet findAll();
 
     /**
      * 根据id找到某一条记录信息
@@ -25,7 +26,7 @@ public interface IRecordService {
      * @param id
      * @return
      */
-    public Record findById(int id);
+    public RespRet findById(int id);
 
     /**
      * 根据id删除某一条记录信息
@@ -40,9 +41,9 @@ public interface IRecordService {
      * @param recordData
      * @param recordTime
      * @param robotId
-     * @return
+     *
      */
-    public boolean addRecord(String recordData , long recordTime , int robotId);
+    public void addRecord(String recordData , long recordTime , int robotId);
 
     /**
      * 分页
@@ -51,6 +52,6 @@ public interface IRecordService {
      * @param pageSize
      * @return
      */
-    public Page<Record> paginate( int pageNum, int pageSize);
+    public RespRet paginate( int pageNum, int pageSize);
 
 }

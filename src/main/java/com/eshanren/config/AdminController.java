@@ -44,7 +44,7 @@ public class AdminController extends Controller {
 //            setCookie("adminName",adminName,600);
 //            redirect("/robot/list");
             setAttr("adminName",adminName);
-            render("/index.html");
+            render("/background/index.html");
         }else{
             System.out.println("登录失败");
             setAttr("message","账号或密码错误");

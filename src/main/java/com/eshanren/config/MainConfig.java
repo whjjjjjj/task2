@@ -4,8 +4,7 @@ import com.eshanren.engine.DateFormatDirective;
 import com.eshanren.interceptor.LoginInterceptor;
 import com.eshanren.model._MappingKit;
 import com.jfinal.config.*;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
-import com.jfinal.kit.PathKit;
+import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
@@ -24,15 +23,24 @@ public class MainConfig extends JFinalConfig {
     //  2019-03-24 数据库建库sql 也要上传
     //  2019-03-24 界面实在太难看了，任务中要求有后台模版
 
+    static Prop p;
+
+    static void loadConfig(){
+        if (p==null) {
+            p = PropKit.use("config.properties").appendIfExists("jfinal-task2-config-dev.txt");
+        }
+    }
+
     public static void main(String[] args){
-        UndertowServer.start(MainConfig.class,80,true);
+        UndertowServer.start(MainConfig.class);
 
     }
 
     @Override
     public void configConstant(Constants constants) {
+
+        loadConfig();
         constants.setDevMode(true);
-        PropKit.use("config.properties");
         constants.setViewType(ViewType.JFINAL_TEMPLATE);
     }
 
@@ -45,7 +53,10 @@ public class MainConfig extends JFinalConfig {
 
     @Override
     public void configEngine(Engine engine) {
+
         engine.addDirective("format",DateFormatDirective.class);
+        engine.setBaseTemplatePath("webapp");
+        engine.setToClassPathSourceFactory();
     }
 
     @Override

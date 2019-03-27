@@ -1,0 +1,6 @@
+#config
+
+jdbcClass = com.mysql.jdbc.Driver
+jdbcUrl=jdbc:mysql://localhost:3306/jfinal3?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+user=root
+password=123456

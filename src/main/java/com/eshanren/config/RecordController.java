@@ -116,9 +116,10 @@ public class RecordController extends Controller{
         String text1 = getPara("text");
         String atMobiles = getPara("atMobiles");
         String isAtAll = getPara("isAtAll");
-
+        System.out.println("asdsadsadasd"+text1);
         Remark remark = new Remark();
         String text =remark.convertFragment(text1);
+        System.out.println("asdas"+text);
         boolean b = "true".equals(isAtAll);
         RespRet respRet = dingDingService.pushMarkdownMsg(robotId, title, text, Arrays.asList(atMobiles), b);
         this.common(respRet,robotId);

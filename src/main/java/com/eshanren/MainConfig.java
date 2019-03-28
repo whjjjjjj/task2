@@ -1,5 +1,8 @@
-package com.eshanren.config;
+package com.eshanren;
 
+import com.eshanren.config.AdminController;
+import com.eshanren.config.RecordController;
+import com.eshanren.config.RobotController;
 import com.eshanren.engine.DateFormatDirective;
 import com.eshanren.interceptor.LoginInterceptor;
 import com.eshanren.model._MappingKit;

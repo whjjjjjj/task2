@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
+    <link rel="stylesheet" href="/background/css/login.css">
 </head>
+
 <body>
-<h1 align="center">管理员登录</h1>
-<form action="login" method="post">
-    <table align="center">
-        <tr>
-            <td><input type="text" name="adminName" placeholder="请输入管理员登录账号">#(adminNameMsg)</td>
-        </tr>
+<div class="wrap">
+    <div class="container">
+        <h1>管理员登录</h1>
+        <form action="login" method="post" >
+            <input type="text" name="adminName" placeholder="admin login"/>
+            <input type="password" name="adminPassword" placeholder="password" />
+            <input type="submit" value="登录">
+            <div id="register">
+                如果您还没注册，请点击<a href="/admin/register.html">这里</a>注册
+            </div>
+        </form>
 
-        <tr>
-            <td><input type="password" name="adminPassword" placeholder="请输入管理员登录密码">#(adminPasswordMsg)</td>
-        </tr>
 
-        <tr>
-            <td><button type="submit">提交</button><a href="/admin/register.html">注册</a></td>
-        </tr>
-    </table>
-</form>
 
+    </div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 </body>
 </html>

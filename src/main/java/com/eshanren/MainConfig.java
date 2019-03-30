@@ -60,6 +60,7 @@ public class MainConfig extends JFinalConfig {
         engine.addDirective("format",DateFormatDirective.class);
         engine.setBaseTemplatePath("webapp");
         engine.setToClassPathSourceFactory();
+
     }
 
     @Override

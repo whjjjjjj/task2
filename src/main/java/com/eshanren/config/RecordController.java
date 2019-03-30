@@ -186,7 +186,6 @@ public class RecordController extends Controller{
         Page<Record> recordPages = (Page<Record>)recordService.paginate(pageNum,2).getData();
         setAttr("recordPages",recordPages);
         setAttr("totalPage",recordPages.getTotalPage());
-
         renderTemplate("list.html");
     }
 

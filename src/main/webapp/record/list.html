@@ -1,42 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>发送记录</title>
+    <title>机器人展示</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
-        <h1 align="center">发送记录表</h1>
-
+<div id="wrap">
+    <div id="top_content">
+        <div id="header">
+            <div id="rightheader">
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <p id="whereami">
+        </p>
+        <h1>
+            发送记录展示
+        </h1>
         #if(recordPages.getTotalRow()==0)
-            当前无发送记录
+        当前无发送记录
         #else
-        <table align="center">
-            <tr>
-                <td>发送数据记录</td>
-                <td>发送数据时间</td>
-                <td>机器人id</td>
+        <table class="table">
+            <tr class="table_header">
+                <td>
+                    发送数据记录
+                </td>
+                <td>
+                    发送数据时间
+                </td>
+                <td>
+                    机器人id
+                </td>
             </tr>
+
             #for(record:recordPages.getList())
-                <tr>
-                    <td>#(record.record_data)</td>
-                    <td>#format(record.record_time)</td>
-                    <td>#(record.robot_id)</td>
-                </tr>
+            <tr class="row2">
+                <td>#(record.record_data)</td>
+                <td>#format(record.record_time)</td>
+                <td>#(record.robot_id)</td>
+            </tr>
             #end
             <tr>
-                <td>当前页:#(recordPages.getPageNumber())</td>
+                当前页:#(recordPages.getPageNumber())
 
-                <td colspan="2">
+                <td colspan="3">
                     #if(recordPages.getPageNumber()>1)
-                        <a href=/record/list?pageNum=#(recordPages.getPageNumber()-1)>上一页</a>
+                    <a href=/record/list?pageNum=#(recordPages.getPageNumber()-1)>上一页</a>
                     #end
 
                     #for(i=0;i< recordPages.getTotalPage(); i++)
-                        <a href=/record/list?pageNum=#(i+1)>#(i+1)</a>
+                    <a href=/record/list?pageNum=#(i+1)>#(i+1)</a>
                     #end
 
                     #if(recordPages.getPageNumber()<recordPages.getTotalPage())
-                        <a href=/record/list?pageNum=#(recordPages.getPageNumber()+1)>下一页</a>
+                    <a href=/record/list?pageNum=#(recordPages.getPageNumber()+1)>下一页</a>
                     #end
 
                     总记录数:#(recordPages.getTotalRow())
@@ -44,5 +63,8 @@
             </tr>
         </table>
         #end
+    </div>
+</div>
+</div>
 </body>
 </html>

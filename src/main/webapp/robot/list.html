@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>机器人展示</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
-    <h1 align="center">机器人展示</h1>
+<div id="wrap">
+    <div id="top_content">
+        <div id="header">
+            <div id="rightheader">
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <p id="whereami">
+        </p>
+        <h1>
+            机器人展示
+        </h1>
+        <table class="table">
+            <tr class="table_header">
+                <td>
+                    机器人ID
+                </td>
+                <td>
+                    机器人姓名
+                </td>
+                <td>
+                    机器人webhook
+                </td>
+                <td>
+                    操作
+                </td>
+            </tr>
 
-    <table align="center">
-
-        <tr>
-            <td>机器人ID</td>
-            <td>机器人名称</td>
-            <td>机器人webhook</td>
-            <td>操作</td>
-        </tr>
-        #for(robot:robots)
-        <tr>
-
-            <td>#(robot.robot_id)</td>
-            <td>#(robot.robot_name)</td>
-            <td>#(robot.robot_url)</td>
-            <td>
-                <a href="/record/?robotId=#(robot.robot_id)">推送钉钉消息</a>
-                <a href=/robot/editRobot?robotId=#(robot.robot_id)>编辑</a>
-                <a href=/robot/delete?robotId=#(robot.robot_id)>删除</a>
-            </td>
-
-        </tr>
-        #end
-    </table>
+            #for(robot:robots)
+            <tr class="row2">
+                <td>#(robot.robot_id)</td>
+                <td>#(robot.robot_name)</td>
+                <td>#(robot.robot_url)</td>
+                <td>
+                    <a href="/record/?robotId=#(robot.robot_id)">推送钉钉消息</a>
+                    <a href=/robot/editRobot?robotId=#(robot.robot_id)>编辑</a>
+                    <a href=/robot/delete?robotId=#(robot.robot_id)>删除</a>
+                </td>
+            </tr>
+            #end
+        </table>
+    </div>
+</div>
+</div>
 </body>
 </html>

@@ -58,8 +58,8 @@ public class MainConfig extends JFinalConfig {
     public void configEngine(Engine engine) {
 
         engine.addDirective("format",DateFormatDirective.class);
-//        engine.setBaseTemplatePath("webapp");
-//        engine.setToClassPathSourceFactory();
+        engine.setBaseTemplatePath("webapp");
+        engine.setToClassPathSourceFactory();
 
     }
 
